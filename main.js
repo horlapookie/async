@@ -159,16 +159,6 @@ function getSimilarCommands(input, commands) {
         .map(c => c.cmd);
 }
 
-const command = text.startsWith('/') ? text.slice(1).split(' ')[0].toLowerCase() : null;
-
-if (command && !allCommands.includes(command)) {
-    const suggestions = getSimilarCommands(command, allCommands);
-    await sock.sendMessage(chatId, {
-        text: `❌ Unknown command: *${command}*\n\n💡 Did you mean:\n${suggestions.map(s => `• ${s}`).join('\n')}`
-    }, { quoted: message });
-    return;
-}
-
 // Global settings
 global.packname = settings.packname;
 global.author = settings.author;
